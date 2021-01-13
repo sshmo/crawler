@@ -1,6 +1,8 @@
 import scrapy
 from scrapy_selenium import SeleniumRequest
+from gamecrawler.items import Game
 
+items = []
 
 class GamesSpider(scrapy.Spider):
 
@@ -64,11 +66,13 @@ class GamesSpider(scrapy.Spider):
         description = response.xpath(
             '//c-wiz[3]/div/div[1]/div[2]/div[1]/span/div/text()').get()
 
-        yield {
-            'name': name,
-            'genre': genre,
-            'score': score,
-            'score_num': score_num,
-            'downloads': downloads,
-            'description': description,
-        }
+        item = Game()
+        item['name']= name
+        item['genre']= genre
+        item['score']= score
+        item['score_num']= score_num
+        item['downloads']= downloads
+        item['description']= description
+        items.append(item)
+
+        return items

@@ -1,3 +1,5 @@
+# SELENIUM-scrapy setup
+
 from shutil import which
 
 SELENIUM_DRIVER_NAME = 'firefox'
@@ -58,6 +60,7 @@ ROBOTSTXT_OBEY = True
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 
+# SELENIUM-scrapy setup
 DOWNLOADER_MIDDLEWARES = {
    'scrapy_selenium.SeleniumMiddleware': 800,
 }
@@ -71,9 +74,17 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'gamecrawler.pipelines.GamecrawlerPipeline': 300,
-#}
+
+ITEM_PIPELINES = {
+    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500
+}
+
+DEFAULT_ITEM_CLASS = 'gamecrawler.items.Game'
+ELASTICSEARCH_SERVERS = ['localhost']
+ELASTICSEARCH_INDEX = 'scrapy'
+ELASTICSEARCH_INDEX_DATE_FORMAT = '%Y-%m'
+ELASTICSEARCH_TYPE = 'items'
+# ELASTICSEARCH_UNIQ_KEY = 'url'  # Custom unique key
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
