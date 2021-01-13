@@ -1,4 +1,4 @@
-# Game Crawler
+# Google play store crawler
 
 Write a crawler to extract game attributes (Max 300 games) and store them in Elasticsearch.
 
