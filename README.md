@@ -30,7 +30,7 @@ Step 4 — Install requirements
   
 Step 5 — Run scrapy
         
-    scrapy crawl games 
+    scrapy crawl games_sel -o games_sel.jl
         
 Now you can see the result at: http://localhost:9200/scrapy-2021-01/_search/
 
