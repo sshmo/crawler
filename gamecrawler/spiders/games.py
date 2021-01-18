@@ -212,7 +212,7 @@ def getDuration(then, now=datetime.now(), interval="default"):
 
 class GamesSpider(scrapy.Spider):
 
-    name = "games_sel"
+    name = "games"
 
     def start_requests(self):
         urls = [

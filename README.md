@@ -30,9 +30,13 @@ Step 4 — Install requirements
   
 Step 5 — Run scrapy
         
-    scrapy crawl games_sel -o games_sel.jl
+    scrapy crawl games_sel -o games.jl
+
+Step 6 — Run elasticsearch_db.py
         
-Now you can see the result at: http://localhost:9200/scrapy-2021-01/_search/
+    python elasticsearch_db.py games.jl
+
+Now you can see the result at: http://localhost:9200/games/_search
 
 
 ## Specifications

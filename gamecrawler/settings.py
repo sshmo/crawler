@@ -1,12 +1,3 @@
-# SELENIUM-scrapy setup
-
-from shutil import which
-
-SELENIUM_DRIVER_NAME = 'firefox'
-SELENIUM_DRIVER_EXECUTABLE_PATH = which('geckodriver')
-SELENIUM_DRIVER_ARGUMENTS=['-headless']  # '--headless' if using chrome instead of firefox
-SELENIUM_BROWSER_EXECUTABLE_PATH = which('firefox')
-
 # Scrapy settings for gamecrawler project
 #
 # For simplicity, this file contains only settings considered important or
@@ -60,12 +51,6 @@ ROBOTSTXT_OBEY = True
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 
-# SELENIUM-scrapy setup
-DOWNLOADER_MIDDLEWARES = {
-   'scrapy_selenium.SeleniumMiddleware': 800,
-}
-
-
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -74,17 +59,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-ITEM_PIPELINES = {
-    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500
-}
-
-DEFAULT_ITEM_CLASS = 'gamecrawler.items.Game'
-ELASTICSEARCH_SERVERS = ['localhost']
-ELASTICSEARCH_INDEX = 'scrapy'
-ELASTICSEARCH_INDEX_DATE_FORMAT = '%Y-%m'
-ELASTICSEARCH_TYPE = 'items'
-# ELASTICSEARCH_UNIQ_KEY = 'url'  # Custom unique key
+#ITEM_PIPELINES = {
+#    'gamecrawler.pipelines.GamecrawlerPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
