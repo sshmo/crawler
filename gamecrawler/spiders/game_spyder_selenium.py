@@ -16,57 +16,63 @@ from selenium.webdriver.firefox.options import Options
 f_options = Options()
 
 
-def load_url(url):
+def load_main(url):
 
-    then = datetime.now()
+    try:
+        start = datetime.now()
 
-    send, recv = initialise()
+        send, recv = initialise()
 
-    # set up the browser
-    browser = setup()
+        # set up the browser
+        browser = setup()
 
-    browser.get(url)
-    print('loading...')
-    print()
+        browser.get(url)
+        print('loading...')
+        print()
 
-    # You can set your own pause time. My laptop is a bit slow so I use 1 sec
-    scroll_pause_time = 1
-    screen_height = browser.execute_script(
-        "return window.screen.height;")   # get the screen height of the web
-    i = 1
+        # You can set your own pause time. My laptop is a bit slow so I use 1 sec
+        scroll_pause_time = 1
+        screen_height = browser.execute_script(
+            "return window.screen.height;")   # get the screen height of the web
+        i = 1
 
-    while True:
-        # scroll one screen height each time
-        browser.execute_script(
-            "window.scrollTo(0, {screen_height}*{i});".format(screen_height=screen_height, i=i))
-        i += 1
-        sleep(scroll_pause_time)
-        # update scroll height each time after scrolled, as the scroll height can change after we scrolled the page
-        scroll_height = browser.execute_script(
-            "return document.body.scrollHeight;")
-        # Break the loop when the height we need to scroll to is larger than the total scroll height
-        if (screen_height) * i > scroll_height:
-            break
+        while True:
+            # scroll one screen height each time
+            browser.execute_script(
+                "window.scrollTo(0, {screen_height}*{i});".format(screen_height=screen_height, i=i))
+            i += 1
+            sleep(scroll_pause_time)
+            # update scroll height each time after scrolled, as the scroll height can change after we scrolled the page
+            scroll_height = browser.execute_script(
+                "return document.body.scrollHeight;")
+            # Break the loop when the height we need to scroll to is larger than the total scroll height
+            if (screen_height) * i > scroll_height:
+                break
 
-    sleep(1)
+        sleep(1)
 
-    text = browser.page_source
+        source = browser.page_source
 
-    send, recv, del_send, del_recv = net_update(send, recv)
-    now = datetime.now()
-    dur_sec = getDuration(then, now, 'seconds')
+    except Exception as e:
+        print(e)
 
-    print(getDuration(then, now, 'ms'))
-    print()
-    print('All done!')
-    print(
-        '============================================================')
-    print()
-    # # delete_all_cookies and quit
-    # browser.delete_all_cookies()
-    browser.quit()
+    finally:
 
-    return text
+        net_update(send, recv)
+        stop = datetime.now()
+        dur_sec = getDuration(start, stop, 'seconds')
+
+        print(dur_sec)
+        print()
+        print('All done!')
+        print(
+            '============================================================')
+        print()
+        # # delete_all_cookies and quit
+        # browser.delete_all_cookies()
+        browser.quit()
+
+        return source
 
 
 def setup():
@@ -213,16 +219,15 @@ class GamesSpider(scrapy.Spider):
             'https://play.google.com/store/apps/collection/cluster?clp=0g4YChYKEHRvcGdyb3NzaW5nX0dBTUUQBxgD:S:ANO1ljLhYwQ&gsr=ChvSDhgKFgoQdG9wZ3Jvc3NpbmdfR0FNRRAHGAM%3D:S:ANO1ljIKta8',
         ]
         for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
+            yield scrapy.Request(url=url, callback=self.parse_main)
 
-    def parse(self, response):
+    def parse_main(self, response):
 
         scrap = True
         n_scrap = 300
         j = 0
 
-        text = load_url(response.url)
-        sleep(5)
+        text = load_main(response.url)
         sel = Selector(text=text)
 
         while scrap:
@@ -246,8 +251,11 @@ class GamesSpider(scrapy.Spider):
 
     def parse_game(self, response):
 
+        #text = load_game(response.url)
+        #sel = Selector(text=text)
+
         # https://stackoverflow.com/a/48990753
-        name = response.selector.xpath(
+        name = response.xpath(
             '//c-wiz[1]/h1/span/text()').get()
 
         genre = response.xpath(
@@ -263,7 +271,7 @@ class GamesSpider(scrapy.Spider):
             '//div/div[3]/span/div/span/text()').get()
 
         description = response.xpath(
-            '//div[1]/span/div/text()').get()
+            "//meta[@name='description']/@content")[0].extract()
 
         yield {
             'name': name,
