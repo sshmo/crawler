@@ -1,6 +1,10 @@
 # Google play store crawler
 
-Write a crawler to extract game attributes (Max 300 games) and store them in Elasticsearch.
+Write a crawler to extract game attributes (Max 300 games) and store them in Elasticsearch. Using Kibana, visualize the stered data.
+
+
+* Downloads and vote number vs score in Kibana 
+![Main_page](Screenshot_2021-01-18_Lens-Elastic.png)
 
 ## How to run
 
@@ -55,6 +59,4 @@ The following attributes are of intrest:
 
 * TODO
 
-* Use Kibana for data visualization and relate the number of downloads to game score.
-
-* Visualize the words frequency in game description using Kibana
+    Visualize the words frequency in game description using Kibana
