@@ -27,7 +27,7 @@ Step 2 — Set Up Python
     sudo apt update
     sudo apt install python3-pip python3-dev
     
-Step 3 — Create a Python Virtual Environment for Jupyter
+Step 3 — Create a Python Virtual Environment
 
     sudo -H pip3 install --upgrade pip
     sudo -H pip3 install virtualenv
@@ -40,7 +40,7 @@ Step 4 — Install requirements
   
 Step 5 — Run scrapy
         
-    scrapy crawl games_sel -o games.jl
+    scrapy crawl games -o games.jl
 
 Step 6 — Run elasticsearch_db.py
         
