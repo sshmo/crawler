@@ -14,7 +14,7 @@ Write a crawler to extract game attributes (Max 300 games) and store them in Ela
 
 ## How to run
 
-First setup [Elasticsearch](https://github.com/sshmo/Snippets/blob/master/Elasticsearch.md).
+First setup [Elasticsearch & Kibana](https://github.com/sshmo/Snippets/blob/master/Elasticsearch_&_Kibana.md).
 
 Step 1 — clone the repo:
   
