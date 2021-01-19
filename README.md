@@ -3,8 +3,14 @@
 Write a crawler to extract game attributes (Max 300 games) and store them in Elasticsearch. Using Kibana, visualize the stered data.
 
 
+* Visualize data in Kibana 
+![Data-Visualizer-Machine-Learning-Elastic](Screenshot_2021-01-18-Data-Visualizer-Machine-Learning-Elastic.png)
+
+* Genre visualization in Kibana 
+![Visualize-Elastic](Screenshot_2021-01-19ـVisualize-Elastic.png)
+
 * Downloads and vote number vs score in Kibana 
-![Main_page](Screenshot_2021-01-18_Lens-Elastic.png)
+![Lens-Elastic](Screenshot_2021-01-18_Lens-Elastic.png)
 
 ## How to run
 
@@ -56,6 +62,8 @@ The following attributes are of intrest:
 4. Score value and number
 5. Description
 
+* Use Kibana for data visualization
+* Retale Downloads and vote number to score, using Kibana 
 
 * TODO
 
