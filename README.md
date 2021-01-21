@@ -4,13 +4,16 @@ Write a crawler to extract game attributes (Max 300 games) and store them in Ela
 
 
 * Visualize data in Kibana 
-![Data-Visualizer-Machine-Learning-Elastic](Screenshot_2021-01-18-Data-Visualizer-Machine-Learning-Elastic.png)
+![Data-Visualizer-Machine-Learning-Elastic](./Screenshots/Screenshot_2021-01-18-Data-Visualizer-Machine-Learning-Elastic.png)
 
 * Genre visualization in Kibana 
-![Visualize-Elastic](Screenshot_2021-01-19ـVisualize-Elastic.png)
+![Visualize-Elastic](./Screenshots/Screenshot_2021-01-19ـVisualize-Elastic.png)
 
 * Downloads and vote number vs score in Kibana 
-![Lens-Elastic](Screenshot_2021-01-18_Lens-Elastic.png)
+![Lens-Elastic](./Screenshots/Screenshot_2021-01-18_Lens-Elastic.png)
+
+* Words frequency in game description using Kibana 
+![Lens-Elastic](./Screenshots/Screenshot_2021-01-21_Lens-Elastic.png)
 
 ## How to run
 
@@ -64,7 +67,4 @@ The following attributes are of intrest:
 
 * Use Kibana for data visualization
 * Retale Downloads and vote number to score, using Kibana 
-
-* TODO
-
-    Visualize the words frequency in game description using Kibana
+* Visualize the words frequency in game description using Kibana
